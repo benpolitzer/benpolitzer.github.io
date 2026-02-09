@@ -1,0 +1,35 @@
+html, body { height: 100%; }
+
+/* keep theme background predictable */
+body.colorscheme-dark {
+  background: #0b0f14 !important;
+}
+
+/* animated background layer */
+body.colorscheme-dark::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* 3 layers: soft waves + subtle vignette */
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 180, 255, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(160, 90, 255, 0.14), transparent 50%),
+    repeating-radial-gradient(circle at 50% 50%,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.00) 6px,
+      rgba(255,255,255,0.00) 22px);
+
+  filter: blur(0.2px);
+  opacity: 1;
+
+  transform: translateZ(0);
+  animation: ripplePan 14s ease-in-out infinite;
+}
+
+@keyframes ripplePan {
+  0%   { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  50%  { background-position: 100% 80%, 0% 100%, 40% 60%; }
+  100% { background

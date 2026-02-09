@@ -1,0 +1,22 @@
+html, body { height: 100%; }
+
+/* WebGL canvas behind everything */
+#bg-canvas{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  display: block;
+}
+
+/* Let the shader show through */
+body{
+  background: transparent !important;
+}
+
+/* Optional: if some sections have their own background, you may need this too */
+main, .wrapper{
+  background: transparent !important;
+}
