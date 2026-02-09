@@ -1,7 +1,5 @@
 /* assets/js/bg-webgl.js
    Morphing blob/noise ripple background
-   - WebGL2 with WebGL1 fallback
-   - Uses system clock so animation DOES NOT restart on navigation/refresh
 */
 (() => {
   function init() {
@@ -10,7 +8,7 @@
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Create canvas (do NOT put canvas in <head>)
+    // Create canvas
     let canvas = document.getElementById("bg-canvas");
     if (!canvas) {
       canvas = document.createElement("canvas");
@@ -30,8 +28,6 @@
       display: "block",
     });
 
-    // Try WebGL2 first, then WebGL1
-    /** @type {WebGL2RenderingContext|WebGLRenderingContext|null} */
     let gl =
       canvas.getContext("webgl2", {
         alpha: true,
@@ -50,11 +46,9 @@
     }
 
     // --- Params --- //
-    const SPEED = 0.1; // slower = smaller (0.05–0.15 feels nice)
-    const TIME_WRAP = 100000.0; // keep time small for float precision
+    const SPEED = 0.1; 
+    const TIME_WRAP = 100000.0; 
 
-    // Persist a phase offset so the pattern isn't identical across machines
-    // (still continuous across pages in the same browser)
     const PHASE_KEY = "bg_phase_offset_v1";
     let phase = Number(localStorage.getItem(PHASE_KEY));
     if (!Number.isFinite(phase)) {
@@ -62,12 +56,10 @@
       localStorage.setItem(PHASE_KEY, String(phase));
     }
 
-    // Absolute time in seconds (system clock), wrapped for stability
     function absoluteTimeSeconds() {
       return ((Date.now() * 0.001) + phase) % TIME_WRAP;
     }
 
-    // ---------- Shaders ----------
     const isWebGL2 =
       typeof WebGL2RenderingContext !== "undefined" &&
       gl instanceof WebGL2RenderingContext;
@@ -92,7 +84,7 @@
 
     uniform vec2  uRes;
     uniform float uTime;
-    uniform float uStrength; // overall contrast/brightness
+    uniform float uStrength; 
 
     float hash21(vec2 p) {
       p = fract(p * vec2(123.34, 456.21));
@@ -173,7 +165,7 @@
       v = pow(v, 1.35);
       v *= (0.65 + 0.35 * (1.0 - edge));
 
-      // --- Color (Option B: subtle "oil slick") ---
+      // Secondary color 
       float tcol = clamp(1.0 - edge, 0.0, 1.0);
 
       float hue = 0.55 + 0.08 * sin(uTime * 0.1) + 0.18 * tcol;
@@ -288,7 +280,6 @@
       v = pow(v, 1.35);
       v *= (0.65 + 0.35 * (1.0 - edge));
 
-      // WebGL1 fallback keeps your previous cool grayscale tint
       vec3 col = vec3(v);
       col *= vec3(0.95, 0.98, 1.05);
 
@@ -296,7 +287,6 @@
       gl_FragColor = vec4(col, alpha);
     }`;
 
-    // ---------- Compile / link ----------
     function compileShader(type, src) {
       const sh = gl.createShader(type);
       gl.shaderSource(sh, src);
@@ -359,7 +349,6 @@
       gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
     }
 
-    // Blend so alpha works (over body)
     gl.disable(gl.DEPTH_TEST);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -378,7 +367,7 @@
     }
     window.addEventListener("resize", resize, { passive: true });
 
-    // Main loop (system-clock time, not page-load time)
+    // Main
     function frame() {
       resize();
 
@@ -401,11 +390,9 @@
       if (!prefersReduced) requestAnimationFrame(frame);
     }
 
-    // Kick it off
     resize();
     requestAnimationFrame(frame);
 
-    // Context loss safety
     canvas.addEventListener("webglcontextlost", (e) => {
       e.preventDefault();
       console.warn("[bg-webgl] WebGL context lost.");
