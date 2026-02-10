@@ -1,0 +1,22 @@
+{{ define "content" }}
+<div class="projects-page">
+  <h1 class="projects-title">{{ .Title }}</h1>
+
+  <div class="project-grid">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ $page := . }}
+
+      <div class="project-item">
+        {{ $img := $page.Resources.GetMatch ($page.Params.cover | default "cover*") }}
+        {{ with $img }}
+          <a class="project-thumb" href="{{ $page.RelPermalink }}">
+            <img src="{{ .RelPermalink }}" alt="{{ $page.Title }}">
+          </a>
+        {{ end }}
+
+        <div class="project-label">{{ $page.Title }}</div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
