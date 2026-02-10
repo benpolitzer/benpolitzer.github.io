@@ -26,14 +26,6 @@ body.colorscheme-dark {
 }
 .nav-item.dropdown:hover .dropdown-menu { display: block; }
 
-.project-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 28px;
-  align-items: start;
-}
-
-
 .project-item{
   display:flex;
   flex-direction:column;
@@ -42,21 +34,24 @@ body.colorscheme-dark {
 
 .project-thumb{
   display: block;
-  width: 320px;      
+  max-width: 500px;      
 }
 
 .project-thumb img{
   width: 100% !important;
-  height: 180px !important;    
-  object-fit: cover;           
+  aspect-ratio: 16 / 9; 
+  height: auto !important;
+  object-fit: cover;
   display: block;
   border-radius: 12px;
 }
 
 .project-label{
-  font-size:3rem;
-  font-weight:600;
-  line-height:2;
+  font-size: 2rem; 
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0;
 }
 
 .project-summary{
@@ -65,9 +60,18 @@ body.colorscheme-dark {
   line-height:1.35;
 }
 .projects-page {
-  max-width: 1250px;      /* change to taste */
-  margin: 0 auto;         /* centers the whole block */
-  padding: 0 48px;        /* left/right offset (gutters) */
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.project-grid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  align-items: start;
 }
 
 .projects-title{
