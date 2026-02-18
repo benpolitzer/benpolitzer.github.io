@@ -1,6 +1,3 @@
-/* assets/js/bg-webgl.js
-   Morphing blob/noise ripple background
-*/
 (() => {
   function init() {
     // Respect reduced motion
@@ -45,8 +42,7 @@
       return;
     }
 
-    // --- Params --- //
-    const SPEED = 0.1; 
+    const SPEED = .25; 
     const TIME_WRAP = 100000.0; 
 
     const PHASE_KEY = "bg_phase_offset_v1";

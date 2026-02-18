@@ -3,4 +3,5 @@ title = "Contact"
 slug = "contact"
 +++
 
-Follow me, @johndoe.
+Email: benjaminl.politzer@mymail.champlain.edu
+ADDING ICONS TO CLICK ON SOON
