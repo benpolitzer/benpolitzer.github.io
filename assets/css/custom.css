@@ -6,6 +6,7 @@ a:active,
 a:visited {
   text-decoration: none !important;
 }
+
 body.colorscheme-dark {
   background: #0b0f14 !important;
 }
@@ -154,6 +155,16 @@ body.colorscheme-light nav.navigation::after{
   pointer-events: none; 
   transition: opacity 250ms ease;
 }
+.scroll-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 99997;
+  opacity: 0.85;
+  pointer-events: none; /* doesn't block clicks */
+  transition: opacity 250ms ease;
+}
 
 .scroll-hint.hidden {
   opacity: 0;
@@ -173,6 +184,7 @@ body.colorscheme-light nav.navigation::after{
   0%, 100% { transform: rotate(45deg) translate(0, 0); }
   50%      { transform: rotate(45deg) translate(6px, 6px); }
 }
+
 header::after {
   content: "";
   position: absolute;
@@ -193,6 +205,7 @@ header {
   position: relative;
   z-index: 10;
 }
+
 .project-meta{ padding:0.9rem 1rem; }
 .project-meta h2{ margin:0 0 .35rem 0; }
 .project-meta p{ margin:0; opacity:.85; }
@@ -201,4 +214,4 @@ header {
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0;
-  height: 0;
+
