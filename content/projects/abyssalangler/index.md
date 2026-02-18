@@ -4,5 +4,7 @@ date: 2026-02-09
 weight: 10
 cover: "AbyssalAngler.png"
 ---
-
-Write the project page content here...
+![Outline](/gifs/ConstellationFinished.gif)
+![Outline](/gifs/KeepInZoneMinigame.gif)
+![Outline](/gifs/TelescopeMovement.gif)
+![Outline](/gifs/SplinePipeGenerator.gif)

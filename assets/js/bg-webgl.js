@@ -42,7 +42,7 @@
       return;
     }
 
-    const SPEED = .25; 
+    const SPEED = 0.25; 
     const TIME_WRAP = 100000.0; 
 
     const PHASE_KEY = "bg_phase_offset_v1";
@@ -164,12 +164,12 @@
       // Secondary color 
       float tcol = clamp(1.0 - edge, 0.0, 1.0);
 
-      float hue = 0.55 + 0.08 * sin(uTime * 0.1) + 0.18 * tcol;
+      float hue = 0.55 * sin(uTime * 0.1) + 0.18 * tcol;
 
-      vec3 a = vec3(0.40, 0.40, 0.42);
-      vec3 b = vec3(0.28, 0.26, 0.24);
+      vec3 a = vec3(0, 1, 1);
+      vec3 b = vec3(0, 0, 0);
       vec3 cpal = vec3(1.00, 1.00, 1.00);
-      vec3 d = vec3(0.00, 0.10, 0.20);
+      vec3 d = vec3(0.0, 0.10, 0.20);
 
       vec3 pal = a + b * cos(6.28318 * (cpal * hue + d));
 
