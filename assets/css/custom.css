@@ -116,7 +116,7 @@ body.colorscheme-light nav.navigation::after{
 .project-label{
   font-size: 2rem; 
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 2.5;
   text-align: center;
   margin: 0;
 }
