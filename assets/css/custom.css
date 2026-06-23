@@ -69,6 +69,11 @@ body.colorscheme-dark { background: #0b0f14 !important; }
   margin: 0;
 }
 
+.navigation .navigation-list .navigation-item .dropdown-menu .dropdown-item {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .dropdown-item {
   display: block;
   padding: 8px 14px;
