@@ -2,7 +2,7 @@
 title: "Abyssal Angler"
 date: 2026-02-09
 weight: 10
-cover: "AbyssalAngler.png"
+cover: "aastartmenu.gif"
 ---
 ![Outline](/gifs/ConstellationFinished.gif)
 ![Outline](/gifs/KeepInZoneMinigame.gif)

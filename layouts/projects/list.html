@@ -1,12 +1,13 @@
+{{ define "title" }}
+  {{ .Title }}
+{{ end }}
 {{ define "content" }}
 <div class="projects-page">
   <h1 class="projects-title">{{ .Title }}</h1>
 
   <div class="project-grid">
-    {{ range .Pages.ByDate.Reverse }}
-      {{ $page := . }}
-
-      <div class="project-item">
+    {{ range $index, $page := .Pages.ByDate.Reverse }}
+      <div class="project-item" style="--stagger-index: {{ $index }};">
         {{ $img := $page.Resources.GetMatch ($page.Params.cover | default "cover*") }}
         {{ with $img }}
           <a class="project-thumb" href="{{ $page.RelPermalink }}">

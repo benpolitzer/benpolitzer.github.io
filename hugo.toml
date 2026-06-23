@@ -51,7 +51,7 @@ customCSS = ["css/custom.css"]
 customSCSS = []
 
 # Custom JS
-customJS = ["js/bg-webgl.js"]
+customJS = ["js/bg-webgl.js", "js/nav-dropdown.js", "js/ui-polish.js"]
 
 # Custom remote JS files
 customRemoteJS = []
@@ -97,4 +97,3 @@ pageRef = "projects"
 name = "Contact me"
 weight = 5
 pageRef = "contact"
-

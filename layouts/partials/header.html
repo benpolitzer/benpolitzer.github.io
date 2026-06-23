@@ -13,9 +13,33 @@
       <ul class="navigation-list">
         {{ with .Site.Menus.main}}
           {{ range sort . }}
-            <li class="navigation-item">
-              <a class="navigation-link {{ .Params.class }}" href="{{ index (apply (slice .URL) (.Params.urlFunc | default "relLangURL") ".") 0 }}">{{ .Name }}</a>
-            </li>
+            {{ $menuURL := index (apply (slice .URL) (.Params.urlFunc | default "relLangURL") ".") 0 }}
+            {{ $projectsPage := $.Site.GetPage "projects" }}
+            {{ if and $projectsPage (eq .PageRef "projects") }}
+              {{ $isActive := or ($.HasMenuCurrent "main" .) ($.IsMenuCurrent "main" .) }}
+              <li class="navigation-item nav-item dropdown">
+                <a class="navigation-link {{ .Params.class }}{{ if $isActive }} nav-active{{ end }}" href="{{ $menuURL }}">{{ .Name }}</a>
+                <button
+                  type="button"
+                  class="dropdown-trigger"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-label="Toggle {{ .Name }} submenu"
+                ></button>
+                <ul class="dropdown-menu" role="menu">
+                  {{ range $projectsPage.Pages.ByDate.Reverse }}
+                    <li role="none">
+                      <a class="dropdown-item" role="menuitem" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </li>
+                  {{ end }}
+                </ul>
+              </li>
+            {{ else }}
+              {{ $isActive := $.IsMenuCurrent "main" . }}
+              <li class="navigation-item">
+                <a class="navigation-link {{ .Params.class }}{{ if $isActive }} nav-active{{ end }}" href="{{ $menuURL }}">{{ .Name }}</a>
+              </li>
+            {{ end }}
           {{ end }}
         {{ end }}
         {{ if hugo.IsMultilingual }}
