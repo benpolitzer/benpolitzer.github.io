@@ -41,9 +41,7 @@ body.colorscheme-dark { background: #0b0f14 !important; }
   position: absolute;
   right: 0;
   top: 100%;
-  width: max-content;
-  max-width: 280px;
-  min-width: 220px;
+  width: 240px;
   margin: 0;
   padding: 10px 0;
   list-style: none;
